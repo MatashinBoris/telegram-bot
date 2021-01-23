@@ -1,0 +1,64 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+compileJava {
+	sourceCompatibility = '11'
+	targetCompatibility = '11'
+}
+
+group = 'com.chatBot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR2"
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.postgresql:postgresql'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile "org.telegram:telegrambots-spring-boot-starter:5.0.1"
+
+	compile("org.springframework.cloud:spring-cloud-starter-gateway")
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.3.8.RELEASE'
+
+	//implementation 'org.springframework.boot:spring-boot-starter-web'
+	/*testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}*/
+	/*compile("org.springframework.cloud:spring-cloud-starter-netflix-hystrix")
+	compile("org.springframework.cloud:spring-cloud-starter-contract-stub-runner"){
+		exclude group: "org.springframework.boot", module: "spring-boot-starter-web"
+	}*/
+
+
+	//compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '2.3.5.RELEASE'
+
+	// https://mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit
+	compile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.46.0'
+
+
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-logging', version: '2.3.8.RELEASE'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j2
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '2.3.8.RELEASE'
+
+
+
+}
+
+test {
+	useJUnitPlatform()
+}
